@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace表示命名空间 -->
+<mapper namespace="com.zsc.mybatis.demo.mapper.commentMapper">
+
+<!--    resultMap：对应下面的语句-->
+    <select id="getCommentDetails" parameterType="Long" resultMap="user_comment_file">
+        select * from comment where comment_id=#{commentId}
+    </select>
+
+<!--如果看到这里还是记不得参数的的功能，请重新看一下上面的内容-->
+    <select id="listLikeComment" parameterType="String" resultType="comment">
+        select * from comment where comment like concat('%' #{comment},'%')
+    </select>
+
+
+<!--    user_comment_file,表示我们查询的时候会将其关联对象一起查询，-->
+<!--    type=“comment”表示返回的结果为comment类型。-->
+    <resultMap id="user_comment_file" type="comment">
+<!--        commentId表示评论id    comment_id表示comment表的主键-->
+        <id property="commentId" column="comment_id"/>
+<!--        用户对象1对1关联-->
+        <association property="user" column="uuid"
+                     javaType="user"
+                     select="com.zsc.mybatis.demo.mapper.userMapper.getUserById"/>
+<!--        附件/文件对象1对多关联-->
+<!--        使用collection,一个评论对应多个file，因此使用collection与附件对象进行关联。-->
+<!--        Property为comment对象中关联的file属性，而column表示关联到file表的外键。-->
+<!--        ofType表示关联对象类型为fileList，select表示调用接口listByCommentId查询file对象。-->
+        <collection property="fileList" column="comment_id"
+                    ofType="fileList"
+                    select="com.zsc.mybatis.demo.mapper.fileMapper.listByCommentId"/>
+    </resultMap>
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

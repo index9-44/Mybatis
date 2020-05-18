@@ -1,0 +1,24 @@
+input::-webkit-input-placeholder { /* WebKit browsers 适配谷歌 */
+    color: white;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 适配火狐 */
+    color: white;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ 适配火狐 */
+    color: white;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+  适配ie*/
+    color: white;
+}
+
+/*.geiBlacker{*/
+/*    height: 50px;*/
+/*    width: 20px;*/
+/*    background: #00F7DE;*/
+/*}*/
+
+/*#geiBlacker{*/
+/*    height: 50px;*/
+/*    width: 20px;*/
+/*    background: #00F7DE;*/
+/*}*/

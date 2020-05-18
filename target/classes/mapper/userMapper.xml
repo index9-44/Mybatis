@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace表示命名空间 -->
+<!--<mapper>-->
+<mapper namespace="com.zsc.mybatis.demo.mapper.userMapper">
+    <!--查询操作 -->
+<!--    id就是函数名， parameterType就是传进来的参数类型， resultType就是返回值类型，我这里想返回用户所有信息，就返回user对象-->
+   <select id="getUser" parameterType="String" resultType="user">
+        select * from user where username=#{username} and password=#{password}
+   </select>
+
+    <select id="getUserById" parameterType="Long" resultType="user">
+        select * from user where uuid=#{uuid}
+    </select>
+
+<!--    插入操作-->
+<!--    &lt;!&ndash; 添加用户 &ndash;&gt;     返回记录的uuid   useGeneratedKeys="true" keyProperty="uuid"-->
+    <insert id="plususer" parameterType="user" useGeneratedKeys="true" keyProperty="uuid">
+        insert into user(username,password,create_time,register_ip,role)
+        value (#{user.username},#{user.password},#{user.createTime},#{user.registerIp},#{user.role})
+    </insert>
+
+<!--    删除操作-->
+    <delete id="deluser" parameterType="String">
+        delete from user where username=#{username} and password=#{password}
+    </delete>
+
+<!--    更新操作-->
+    <update id="updateuser" parameterType="user">
+        update user set username=#{user.username},password=#{user.password},create_time=#{user.createTime},
+        register_ip=#{user.registerIp},role=#{user.role} where uuid=#{user.uuid}
+    </update>
+
+</mapper>

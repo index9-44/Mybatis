@@ -1,0 +1,15 @@
+#main-contain{
+    background: url("../images/background.jpg");
+    text-align: center;
+}
+
+#input-part{
+    text-align: center;
+    height: 300px;
+    width: 400px;
+    /*background: white;*/
+    border-radius: 20px;
+    margin-left: 400px;
+    margin-top: 200px;
+
+}

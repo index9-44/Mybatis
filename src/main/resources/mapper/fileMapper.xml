@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace表示命名空间 -->
+<!--<mapper>-->
+<mapper namespace="com.zsc.mybatis.demo.mapper.fileMapper">
+
+    <select id="listByCommentId" parameterType="Long" resultType="file">
+        select * from file where comment_id=#{commentId}
+    </select>
+
+
+</mapper>
